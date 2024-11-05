@@ -1,0 +1,32 @@
+<h1>商品一覧</h1>
+
+<div class="container mt-4">
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <!-- 画像のプレースホルダー -->
+          <% if product.image.attached? %>
+            <%= image_tag product.image %>
+          <% else %>
+            <%= image_tag "placeholder.png" %>
+          <% end %>
+
+          <div class="card-body">
+            <!-- 商品名 -->
+            <h5 class="card-title"><%= product.name %></h5>
+
+            <!-- 商品説明 -->
+            <p class="card-text"><%= product.description.truncate(100) %></p>
+
+            <!-- 価格 -->
+            <p class="card-text"><strong>価格: </strong><%= number_to_currency(product.price, unit: "¥") %></p>
+
+            <!-- 詳細ボタン -->
+            <a href="<%= product_path(product.id) %>" class="btn btn-primary">詳細を見る</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

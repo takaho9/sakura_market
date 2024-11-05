@@ -1,0 +1,24 @@
+<!-- app/views/products/show.html.erb -->
+<div class="container mt-5">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <% if @product.image.attached? %>
+          <%= image_tag @product.image, class: "img-fluid rounded-start" %>
+        <% else %>
+          <%= image_tag "placeholder.png", class: "img-fluid rounded-start" %>
+        <% end %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= @product.name %></h5>
+          <p class="card-text"><%= @product.description %></p>
+          <p class="card-text">
+            <strong>価格:</strong> <%= number_to_currency(@product.price) %>
+          </p>
+          <a href="<%= products_path %>" class="btn btn-secondary">戻る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
