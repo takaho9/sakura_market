@@ -18,13 +18,16 @@
   </head>
 
   <body>
-    <% if flash.any? %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-
-    <div class="container">
-      <%= yield %>
+    <%= render "layouts/admins_navbar" %>
+    <div class="container-xxl mt-4">
+      <div class="row">
+        <div class="col-md-3">
+          <%= render "layouts/admins_sidebar" %>
+        </div>
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+      </div>
     </div>
   </body>
 </html>

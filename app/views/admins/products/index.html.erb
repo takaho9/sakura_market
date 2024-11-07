@@ -1,5 +1,7 @@
-<h1>商品一覧</h1>
-
+<div class="d-flex align-items-center mb-3">
+  <h1 class="me-3">商品一覧</h1>
+  <%= link_to "新しい商品を追加", new_admins_product_path, class: "btn btn-primary" %>
+</div>
 <div class="container mt-4">
   <div class="row">
     <% @products.each do |product| %>
@@ -22,8 +24,9 @@
             <!-- 価格 -->
             <p class="card-text"><strong>価格: </strong><%= number_to_currency(product.price, unit: "¥") %></p>
 
-            <!-- 詳細ボタン -->
-            <a href="<%= product_path(product.id) %>" class="btn btn-primary">詳細を見る</a>
+            <%= link_to "詳細を見る", admins_product_path(product.id), class: "btn btn-primary" %>
+            <%# 削除ボタン %>
+            <%= button_to "削除", admins_product_path(product.id), method: :delete, data: { turbo: false }, class: "btn btn-danger" %>
           </div>
         </div>
       </div>
