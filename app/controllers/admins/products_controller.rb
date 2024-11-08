@@ -58,8 +58,7 @@ class Admins::ProductsController < Admins::ApplicationController
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to admins_products_url, notice: "更新しました。" }
-      format.json { head :no_content }
+      format.html { redirect_to admins_products_url, notice: "削除しました。" }
     end
   end
 
