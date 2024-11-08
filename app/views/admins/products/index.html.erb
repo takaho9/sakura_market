@@ -20,7 +20,7 @@
             <th scope="row"><%= product.id %></th>
             <td><%= product.name %></td>
             <td><%= number_to_currency(product.price, unit: "¥") %></td>
-            <td><%= product.status %></td>
+            <td><%= product.status_name %></td>
             <td><%= product.description.truncate(10) %></td>
             <td class="d-flex gap-2">
               <%= link_to "詳細", admins_product_path(product.id), class: "btn btn-outline-primary" %>

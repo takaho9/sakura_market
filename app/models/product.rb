@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
-  enum :status, { "非公開": 0, "公開": 1 }
+  enum :status, { unpublish: 0, publish: 1 }
+  STATUS_NAMES = { unpublish: "非公開", publish: "公開" }.freeze
 
   has_one_attached :image
 
@@ -9,4 +10,8 @@ class Product < ApplicationRecord
   validates :status, presence: true, inclusion: { in: statuses.keys }
 
   scope :default_order, -> { order(id: :asc) }
+
+  def status_name
+    STATUS_NAMES[status.to_sym]
+  end
 end
