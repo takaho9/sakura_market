@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     passwords: "users/passwords",
     confirmations: "users/confirmations"
   }
-  root to: "home#index"
+  root to: "users/products#index"
 
   namespace :admins do
     resources :products
