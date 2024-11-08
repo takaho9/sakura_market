@@ -1,0 +1,11 @@
+
+<h1>新規商品登録</h1>
+<%= simple_form_for @product, url: admins_products_path do |f| %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :description %>
+  <%= f.input :status, as: :radio_buttons, collection: Product.statuses.keys %>
+  <%= f.input :image %>
+  <%= f.button :submit %>
+<% end %>
+<%= link_to "商品一覧へ", admins_products_path, class: "btn btn-secondary" %>
