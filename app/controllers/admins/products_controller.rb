@@ -4,7 +4,7 @@ class Admins::ProductsController < Admins::ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.default_order
   end
 
   # GET /products/1
@@ -25,6 +25,7 @@ class Admins::ProductsController < Admins::ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.image.attach(image_params[:image]) unless image_params[:image].blank?
 
     respond_to do |format|
       if @product.save
@@ -39,16 +40,13 @@ class Admins::ProductsController < Admins::ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    @product.image.destroy if image_params[:image].blank?
-    @product.build_image(image_params) unless image_params[:image].blank?
+    @product.image.attach(image_params[:image]) unless image_params[:image].blank?
 
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to admins_product_path(@product), notice: "Product was successfully updated." }
-        format.json { render :show, status: :ok, location: admins_product_path(@product) }
+        format.html { redirect_to admins_product_path(@product), notice: "更新しました。" }
       else
         format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,7 +58,7 @@ class Admins::ProductsController < Admins::ApplicationController
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to admins_products_url, notice: "Product was successfully destroyed." }
+      format.html { redirect_to admins_products_url, notice: "更新しました。" }
       format.json { head :no_content }
     end
   end
@@ -71,6 +69,10 @@ class Admins::ProductsController < Admins::ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :price, :description, :status, :image)
+      params.require(:product).permit(:name, :price, :description, :status)
+    end
+
+    def image_params
+      params.require(:product).permit(:image)
     end
 end

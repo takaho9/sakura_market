@@ -1,0 +1,17 @@
+<%= link_to "商品一覧へ", admins_products_path, class: "btn btn-outline-secondary "%>
+<h1>商品編集</h1>
+<%= simple_form_for @product, url: admins_product_path do |f|%>
+<div class="container row">
+  <div class="col-sm-4">
+    <%= image_tag @product.image.attached? ? @product.image : "placeholder.png", class: "img-fluid" %>
+    <%= f.input :image, input_html: { value: @product.image } %>
+  </div>
+  <div class="col-sm-8">
+    <%= f.input :name %>
+    <%= f.input :price %>
+    <%= f.input :description %>
+    <%= f.input :status, as: :radio_buttons, collection: Product.statuses.keys %>
+  </div>
+</div>
+<%= f.button :submit %>
+<% end %>

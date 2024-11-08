@@ -2,7 +2,7 @@
 <h1>商品詳細</h1>
 <div class="container row">
   <div class="col-sm-4">
-    <%= image_tag @product.image %>
+    <%= image_tag @product.image.attached? ? @product.image : "placeholder.png", class: "img-fluid" %>
   </div>
   <div class="col-sm-8">
     <div class="header-group d-flex align-items-center">

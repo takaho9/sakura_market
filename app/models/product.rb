@@ -7,4 +7,6 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :description, presence: true
   validates :status, presence: true, inclusion: { in: statuses.keys }
+
+  scope :default_order, -> { order(id: :asc) }
 end
