@@ -1,0 +1,15 @@
+<%= link_to "商品一覧へ", admins_products_path, class: "btn btn-outline-secondary "%>
+<h1>商品詳細</h1>
+<div class="container row">
+  <div class="col-sm-4">
+    <%= image_tag @product.image %>
+  </div>
+  <div class="col-sm-8">
+    <div class="header-group d-flex align-items-center">
+      <h2><%= @product.name %></h2>
+      <%= link_to "編集", edit_admins_product_path, class: "btn btn-outline-primary ms-2" %>
+    </div>
+    <p><strong>価格: </strong><%= number_to_currency(@product.price, unit: "¥") %></p>
+    <p><%= @product.description %></p>
+  </div>
+</div>

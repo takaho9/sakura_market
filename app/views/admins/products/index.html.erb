@@ -11,6 +11,7 @@
           <th scope="col">価格</th>
           <th scope="col">説明</th>
           <th scope="col">詳細</th>
+          <th scope="col">編集</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,7 @@
             <td><%= number_to_currency(product.price, unit: "¥") %></td>
             <td><%= product.description.truncate(10) %></td>
             <td><%= link_to "詳細", admins_product_path(product.id), class: "btn btn-primary" %></td>
+            <td><%= link_to "編集", edit_admins_product_path(product.id), class: "btn btn-outline-primary" %></td>
           </tr>
         <% end %>
       </tbody>
