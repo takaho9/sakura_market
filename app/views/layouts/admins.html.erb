@@ -18,6 +18,9 @@
   </head>
 
   <body>
+    <% if Rails.env.development? %>
+      <%= render 'shared/development_nav' %>
+    <% end %>
     <%= render "layouts/admins_navbar" %>
     <%= render "shared/flash_messages" %>
     <div class="container-xxl mt-4">
