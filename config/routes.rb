@@ -19,5 +19,11 @@ Rails.application.routes.draw do
 
   scope module: :users do
     resources :products, only: %i[index show]
+    resources :cart_items, only: %i[index create destroy] do
+      member do
+        patch :increment
+        patch :decrement
+      end
+    end
   end
 end

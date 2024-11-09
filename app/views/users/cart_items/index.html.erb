@@ -1,0 +1,73 @@
+<!-- app/views/cart_items/index.html.erb -->
+<% if @cart_items.any? %>
+  <div class="container mt-5">
+    <h1>カート</h1>
+    <div class="list-group">
+      <% @cart_items.each do |cart_item| %>
+        <div class="list-group-item mb-3 p-3 shadow-sm">
+          <div class="row g-5">
+            <div class="col-3">
+              <%= display_square_image(cart_item.product.image)  %>
+            </div>
+
+            <div class="col-9">
+              <h5 class="mb-3"><%= cart_item.product.name %></h5>
+              <p class="mb-2 fw-bold">価格: <%= number_to_currency(cart_item.product.price, unit: "¥") %></p>
+              <div class="d-flex mb-3 align-items-center">
+                <p class="fw-bold me-3 mb-0">個数: </p>
+                <%= link_to '-', decrement_cart_item_path(cart_item), data: { turbo_method: :patch }, class: "btn btn-sm btn-outline-primary me-2" %>
+                <span><%= cart_item.quantity %></span>
+                <%= link_to '+', increment_cart_item_path(cart_item), data: { turbo_method: :patch }, class: "btn btn-sm btn-outline-primary ms-2" %>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="mb-2 fw-bold">合計: <%= number_to_currency(cart_item.product.price * cart_item.quantity, unit: "¥") %></p>
+                <%= link_to '削除', cart_item_path(cart_item), data: { turbo_method: :delete }, class: "btn btn-sm btn-danger" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+
+      <div class="list-group-item mb-3 p-3 shadow-sm">
+        <h5>お支払い総額</h5>
+        <div class="row">
+          <div class="col-3">
+            <p class="mb-0">商品の個数: </p>
+            <p class="mb-0">小計（商品のみ): </p>
+
+            <br>
+
+            <p class="mb-0">代引き手数料: </p>
+            <p class="mb-0">送料: </p>
+            <p class="mb-0">消費税率: </p>
+          </div>
+          <div class="col-3">
+            <p class="mb-0 fw-bold"><%= @num_of_items %>個</p>
+            <p class="mb-0 fw-bold"><%= number_to_currency(@sub_total, unit: "¥") %></p>
+
+            <br>
+
+            <p class="mb-0 fw-bold"><%= number_to_currency(@cod_fee, unit: "¥") %></p>
+            <p class="mb-0 fw-bold"><%= number_to_currency(@shipping_fee, unit: "¥") %></p>
+            <p class="mb-0 fw-bold"><%= @tax_rate*100.to_i %>%</p>
+          </div>
+        </div>
+        <hr class="my-2">
+        <div class="row">
+          <div class="col-3">
+            <p class="mb-0">合計</p>
+          </div>
+          <div class="col-3">
+            <p class="mb-0 fw-bold"><%= number_to_currency(@total_charge, unit: "¥") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container mt-5">
+    <h1>カート</h1>
+    <p>カートに商品がありません。</p>
+  </div>
+<% end %>

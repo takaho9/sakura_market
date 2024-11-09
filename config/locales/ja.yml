@@ -1,0 +1,6 @@
+ja:
+  number:
+    currency:
+      format:
+        unit: "¥"
+        format: "%u%n"
