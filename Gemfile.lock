@@ -114,6 +114,8 @@ GEM
     devise-bootstrap-views (1.1.0)
     drb (2.2.1)
     erubi (1.13.0)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -326,6 +328,7 @@ DEPENDENCIES
   debug
   devise
   devise-bootstrap-views (~> 1.1)
+  faker (~> 3.5)
   importmap-rails
   jbuilder
   jsbundling-rails (~> 1.3)
