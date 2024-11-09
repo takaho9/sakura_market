@@ -1,0 +1,15 @@
+
+<h2>ユーザー編集</h2>
+
+<%= simple_form_for @user, url: admins_user_path(@user), method: :patch, data: { turbo_frame: dom_id(@user) } do |f| %>
+  <%= f.input :last_name, label: "性" %>
+  <%= f.input :first_name, label: "名" %>
+  <%= f.input :email, label: "Eメール" %>
+  <%= f.input :postal_code, label: "郵便番号" %>
+  <%= f.input :address, label: "住所" %>
+
+  <div class="actions mt-3">
+    <%= f.submit "更新", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", admins_users_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

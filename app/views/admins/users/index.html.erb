@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="d-flex align-items-center mb-3">
+    <h1 class="me-3">ユーザー一覧</h1>
+  </div>
+  <div class="container mt-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">性</th>
+            <th scope="col">名</th>
+            <th scope="col">Eメール</th>
+            <th scope="col">郵便番号</th>
+            <th scope="col">住所</th>
+            <th scope="col">アクション</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <%= turbo_frame_tag user do %>
+              <tr>
+                <th scope="row"><%= user.id %></th>
+                <td><%= user.last_name %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.postal_code %></td>
+                <td><%= user.address %></td>
+                <td class="d-flex gap-2">
+                  <%= link_to "詳細", admins_user_path(user), class: "btn btn-outline-primary" %>
+                  <%= link_to "編集", edit_admins_user_path(user), class: "btn btn-primary" %>
+                  <%= link_to "削除", admins_user_path(user), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } , class: "btn btn-danger"%>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :products
+    resources :users, except: %i[new create]
   end
 
   scope module: :users do
