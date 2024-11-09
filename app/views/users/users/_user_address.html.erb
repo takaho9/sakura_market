@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h3>郵送先</h3>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        <strong>姓:</strong> <%= current_user.last_name || "未登録" %>
+      </li>
+      <li class="list-group-item">
+        <strong>名:</strong> <%= current_user.first_name || "未登録" %>
+      </li>
+      <li class="list-group-item">
+        <strong>郵便番号:</strong> <%= current_user.postal_code || "未登録" %>
+      </li>
+      <li class="list-group-item">
+        <strong>住所:</strong> <%= current_user.address || "未登録" %>
+      </li>
+    </ul>
+  </div>
+  <div class="card-footer text-center">
+    <%= link_to '郵送先を変更', edit_user_path, class: 'btn btn-primary' %>
+  </div>
+</div>

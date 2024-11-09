@@ -4,6 +4,14 @@ ja:
       user: ユーザー
       product: 商品
     attributes:
+      user:
+        id: ID
+        last_name: 姓
+        first_name: 名
+        email: メールアドレス
+        password: パスワード
+        postal_code: 郵便番号
+        address: 住所
       product:
         id: ID
         name: 商品名

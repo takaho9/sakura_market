@@ -25,5 +25,6 @@ Rails.application.routes.draw do
         patch :decrement
       end
     end
+    resource :user, only: %i[show edit update]
   end
 end
