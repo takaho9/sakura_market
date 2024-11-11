@@ -1,0 +1,17 @@
+
+<h2>注文編集</h2>
+
+<%= simple_form_for @order, url: admins_order_path(@order), method: :patch do |f| %>
+  <%= f.input :status, as: :radio_buttons, collection: Order.statuses.keys.map { |key| [Order::STATUS_NAMES[key.to_sym], key] } %>
+  <%= f.input :orderer_last_name %>
+  <%= f.input :orderer_first_name %>
+  <%= f.input :postal_code %>
+  <%= f.input :address %>
+  <%= f.input :delivery_date, include_blank: true %>
+  <%= f.input :delivery_time_slot, as: :radio_buttons, collection: Order.delivery_time_slots.keys.map { |key| [Order::DELIVERY_TIME_SLOT_NAMES[key.to_sym], key] } %>
+
+  <div class="actions mt-3">
+    <%= f.submit "更新", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", admins_orders_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

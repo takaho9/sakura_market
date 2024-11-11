@@ -1,0 +1,36 @@
+<h1>配送日時の指定</h1>
+
+<%= form_with model: @order, class: "p-4 border rounded shadow-sm" do |f| %>
+  <% if @order.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="m-0">
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :delivery_date, "配達日", class: "form-label" %>
+    <%= f.date_field :delivery_date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :delivery_time_slot, "配達時間帯", class: "form-label" %><br>
+    <div>
+      <% Order.delivery_time_slots.keys.each do |key| %>
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :delivery_time_slot, key, class: "form-check-input" %>
+          <%= f.label :delivery_time_slot, Order::DELIVERY_TIME_SLOT_NAMES[key.to_sym], value: key, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="text-center">
+    <%= f.submit "注文内容の確認へ", class: "btn btn-primary" %>
+    <p class="mb-0 fw-lighter">※配達日時の指定がない場合は、そのままお進みください。</p>
+  </div>
+<% end %>

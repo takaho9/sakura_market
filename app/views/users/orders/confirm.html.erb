@@ -4,7 +4,7 @@
       <% @order.order_items.each do |order_item| %>
         <div class="list-group-item mb-3 p-3 shadow-sm">
           <div class="row g-5">
-            <div class="col-3">
+            <div class="col-2">
               <%= display_square_image(order_item.product.image)  %>
             </div>
 
@@ -67,10 +67,23 @@
               <p class="mb-0">住所: </p>
             </div>
             <div class="col-3">
-              <p class="mb-0 fw-bold"><%= @order.last_name %></p>
-              <p class="mb-0 fw-bold"><%= @order.first_name %></p>
+              <p class="mb-0 fw-bold"><%= @order.orderer_last_name %></p>
+              <p class="mb-0 fw-bold"><%= @order.orderer_first_name %></p>
               <p class="mb-0 fw-bold"><%= @order.postal_code %></p>
               <p class="mb-0 fw-bold"><%= @order.address %></p>
+            </div>
+          </div>
+        </div>
+        <div class="list-group-item mb-3 p-3 shadow-sm">
+          <h5>配送日時の指定</h5>
+          <div class="row">
+            <div class="col-3">
+              <p class="mb-0">配送日</p>
+              <p class="mb-0">配送時間</p>
+            </div>
+            <div class="col-3">
+              <p class="mb-0 fw-bold"><%= @order.delivery_date || "指定なし" %></p>
+              <p class="mb-0 fw-bold"><%= @order.delivery_time_slot_name %></p>
             </div>
           </div>
         </div>

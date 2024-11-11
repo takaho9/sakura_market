@@ -12,6 +12,10 @@ class Users::OrdersController < Users::ApplicationController
   def show
   end
 
+  def new
+    @order = current_user.orders.build
+  end
+
   def create
     set_charge
     @order = current_user.orders.build(
@@ -22,9 +26,10 @@ class Users::OrdersController < Users::ApplicationController
       status: :pending,
       postal_code: current_user.postal_code,
       address: current_user.address,
-      last_name: current_user.last_name,
-      first_name: current_user.first_name
+      orderer_last_name: current_user.last_name,
+      orderer_first_name: current_user.first_name
     )
+    @order.assign_attributes(order_params)
     current_user.cart_items.each do |cart_item|
       @order.order_items.build(
         product_id: cart_item.product_id,
@@ -36,7 +41,7 @@ class Users::OrdersController < Users::ApplicationController
     if @order.save
       redirect_to confirm_order_path(@order)
     else
-      redirect_to users_cart_items_path, alert: "注文処理に失敗しました。"
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -48,10 +53,14 @@ class Users::OrdersController < Users::ApplicationController
   end
 
   def update
-    if @order.confirmed!
-      current_user.cart_items.destroy_all
+    begin
+      ActiveRecord::Base.transaction do
+        @order.confirmed!
+        @order.update!(confirmed_at: Time.zone.now)
+        current_user.cart_items.destroy_all
+      end
       redirect_to orders_path, notice: "注文を確定しました。"
-    else
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved
       redirect_to confirm_order_path(@order), alert: "注文処理に失敗しました。"
     end
   end
@@ -68,11 +77,8 @@ class Users::OrdersController < Users::ApplicationController
 
   def order_params
     params.require(:order).permit(
-      :postal_code,
-      :address,
-      :last_name,
-      :first_name,
-      order_items_attributes: %i[product_id quantity]
+      :delivery_date,
+      :delivery_time_slot
     )
   end
 

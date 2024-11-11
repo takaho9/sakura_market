@@ -3,6 +3,7 @@ ja:
     models:
       user: ユーザー
       product: 商品
+      order: 注文
     attributes:
       user:
         id: ID
@@ -19,6 +20,21 @@ ja:
         description: 説明
         status: ステータス
         image: 画像
+      order:
+        id: ID
+        user_id: ユーザーID
+        total_charge: 合計金額
+        cod_fee: 代引き手数料
+        tax_rate: 消費税率
+        shipping_fee: 送料
+        status: 状態
+        postal_code: 郵便番号
+        address: 住所
+        orderer_last_name: 注文者姓
+        orderer_first_name: 注文者名
+        confirmed_at: 注文確定日
+        delivery_date: 配達日
+        delivery_time_slot: 配達時間帯
   attributes:
     created_at: 作成日
     updated_at: 更新日

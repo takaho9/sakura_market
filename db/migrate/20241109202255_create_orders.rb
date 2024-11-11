@@ -9,8 +9,9 @@ class CreateOrders < ActiveRecord::Migration[7.2]
       t.integer :status, null: false, default: 0
       t.string :postal_code, null: false
       t.string :address, null: false
-      t.string :last_name, null: false
-      t.string :first_name, null: false
+      t.string :orderer_last_name, null: false
+      t.string :orderer_first_name, null: false
+      t.datetime :confirmed_at
 
       t.timestamps
     end
