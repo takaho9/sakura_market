@@ -1,6 +1,6 @@
 class Users::ProductsController < Users::ApplicationController
   def index
-    @products = Product.publish
+    @products = Product.with_attached_image.publish
   end
 
   def show

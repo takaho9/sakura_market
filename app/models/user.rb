@@ -5,10 +5,15 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   validates :postal_code, format: { with: /\A\d{3}-?\d{4}\z/, message: "は「123-4567」または「1234567」の形式で入力してください" }
 
   scope :default_order, -> { order(id: :asc) }
+
+  def address_info_registered?
+    last_name.present? && first_name.present? && postal_code.present? && address.present?
+  end
 
   private
 

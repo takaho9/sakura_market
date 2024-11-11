@@ -26,6 +26,16 @@ Rails.application.routes.draw do
         patch :decrement
       end
     end
-    resource :user, only: %i[show edit update]
+    resource :user, only: %i[show] do
+      member do
+        get :edit_address
+        patch :update_address
+      end
+    end
+    resources :orders do
+      member do
+        get :confirm
+      end
+    end
   end
 end

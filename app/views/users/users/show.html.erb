@@ -1,8 +1,10 @@
-<div class="container mt-5">
-  <h1>マイページ</h1>
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <%= render "user_address" %>
+<h1 class="mb-3">マイページ</h1>
+<div>
+  <%= render "user_address" %>
+  <div class="row justify-content-center mt-5">
+    <div class="">
+      <h2>購入履歴</h2>
+      <%= render "users/orders/ordered_history" %>
     </div>
   </div>
 </div>
