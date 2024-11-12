@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 機能
+管理者側
+- [x] ユーザー管理
+	- [x] index/show/edit/update/destroy
+- [x] 商品管理
+  - [x] index/show/new/create/edit/update/destroy(論理削除)
+  - [x] ユーザー画面における商品の並び順の設定
+- [x] 注文管理
+	- [x] index/show/edit/update
 
-Things you may want to cover:
+ユーザー側
+- [x] 商品機能
+  - [x] index/show
+- [x] カート機能(CartItems)
+	- [x] index/create/increment/decrement/destroy
+- [x] 注文機能
+	- [x] index/show/new/create/confirm/edit/update/destroy
 
-* Ruby version
 
-* System dependencies
+## 参考画像
+### 管理者側
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### ユーザー側
