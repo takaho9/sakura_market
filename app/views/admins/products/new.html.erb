@@ -4,7 +4,7 @@
   <%= f.input :name %>
   <%= f.input :price %>
   <%= f.input :description %>
-  <%= f.input :status, as: :radio_buttons, collection: Product.statuses.keys %>
+  <%= f.input :status, as: :radio_buttons, collection: Product.statuses.keys.map { |key| [Product::STATUS_NAMES[key.to_sym], key] } %>
   <%= f.input :priority %>
   <%= f.input :image %>
   <%= f.button :submit %>
