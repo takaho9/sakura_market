@@ -1,0 +1,10 @@
+<%= search_form_for @q, url: admins_products_path do |f| %>
+   <%= f.search_field :name_cont, class: 'form-control', placeholder: '検索ワード' %>
+   <%= f.check_box :status_eq_any, { multiple: true }, 'publish', nil %>
+   <%= f.label :status_eq_any, '公開' %>
+   <%= f.check_box :status_eq_any, { multiple: true }, 'unpublish', nil %>
+   <%= f.label :status_eq_any, '非公開' %>
+   <%= f.check_box :status_eq_any, { multiple: true }, 'discarded', nil %>
+   <%= f.label :status_eq_any, '削除済み' %>
+   <%= f.submit '検索', class: 'btn btn-primary' %>
+<% end %>

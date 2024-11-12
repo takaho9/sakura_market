@@ -4,7 +4,8 @@ class Admins::ProductsController < Admins::ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = params[:show_discarded] ? Product.default_order : Product.not_discarded.default_order
+    @q = Product.ransack(params[:q])
+    @products = @q.result(distinct: true).default_order
     @site_setting_for_products_order = SiteSetting.find_or_create_by(key: "display_order_products")
   end
 

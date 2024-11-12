@@ -67,3 +67,5 @@ gem "simple_form", "~> 5.3"
 gem "faker", "~> 3.5"
 gem "business_time"
 gem "holiday_jp"
+
+gem "ransack", "~> 4.2"
