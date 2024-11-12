@@ -11,10 +11,15 @@
     <% end %>
   </div>
   <div class="container mt-4">
-    <div class="d-flex align-items-center mb-3">
+    <div class="d-flex align-items-center">
       <h2 class="me-3">商品一覧</h2>
       <%= link_to "新しい商品を追加", new_admins_product_path, class: "btn btn-sm btn-primary" %>
     </div>
+    <% if params[:show_discarded] == 'true' %>
+      <%= link_to "削除済みを非表示", admins_products_path %>
+    <% else %>
+      <%= link_to "削除済を表示", admins_products_path(show_discarded: true) %>
+    <% end %>
     <table class="table">
       <thead>
         <tr>

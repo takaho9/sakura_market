@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-  enum :status, { unpublish: 0, publish: 1 }
-  STATUS_NAMES = { unpublish: "非公開", publish: "公開" }.freeze
+  enum :status, { unpublish: 0, publish: 1, discarded: 99 }
+  STATUS_NAMES = { unpublish: "非公開", publish: "公開", discarded: "削除済み" }.freeze
 
   has_one_attached :image
 

@@ -4,7 +4,7 @@ class Admins::ProductsController < Admins::ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.default_order
+    @products = params[:show_discarded] ? Product.default_order : Product.not_discarded.default_order
     @site_setting_for_products_order = SiteSetting.find_or_create_by(key: "display_order_products")
   end
 
@@ -55,11 +55,10 @@ class Admins::ProductsController < Admins::ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product.image.destroy
-    @product.destroy
-
-    respond_to do |format|
-      format.html { redirect_to admins_products_url, notice: "削除しました。" }
+    if @product.discarded!
+      redirect_to admins_products_path, notice: "削除しました。"
+    else
+      redirect_to admins_products_path, alert: "削除できませんでした。"
     end
   end
 
