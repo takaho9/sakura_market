@@ -5,6 +5,7 @@
   <%= f.input :price %>
   <%= f.input :description %>
   <%= f.input :status, as: :radio_buttons, collection: Product.statuses.keys %>
+  <%= f.input :priority %>
   <%= f.input :image %>
   <%= f.button :submit %>
 <% end %>

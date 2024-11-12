@@ -19,6 +19,7 @@ ja:
         price: 価格
         description: 説明
         status: ステータス
+        priority: 優先度
         image: 画像
       order:
         id: ID

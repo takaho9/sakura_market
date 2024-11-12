@@ -10,6 +10,22 @@ class Product < ApplicationRecord
   validates :status, presence: true, inclusion: { in: statuses.keys }
 
   scope :default_order, -> { order(id: :asc) }
+  scope :setting_order, ->(display_order) {
+    case display_order
+    when "priority"
+      order(priority: :desc)
+    when "newest"
+      order(created_at: :desc)
+    when "oldest"
+      order(created_at: :asc)
+    when "price_low_to_high"
+      order(price: :asc)
+    when "price_high_to_low"
+      order(price: :desc)
+    else
+      order(id: :asc)
+    end
+  }
 
   def status_name
     STATUS_NAMES[status.to_sym]

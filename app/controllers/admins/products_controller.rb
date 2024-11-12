@@ -5,6 +5,7 @@ class Admins::ProductsController < Admins::ApplicationController
   # GET /products.json
   def index
     @products = Product.default_order
+    @site_setting_for_products_order = SiteSetting.find_or_create_by(key: "display_order_products")
   end
 
   # GET /products/1
@@ -68,7 +69,7 @@ class Admins::ProductsController < Admins::ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :price, :description, :status)
+      params.require(:product).permit(:name, :price, :description, :status, :priority)
     end
 
     def image_params
